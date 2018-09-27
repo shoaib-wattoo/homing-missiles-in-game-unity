@@ -1,11 +1,11 @@
-###Scene Setup:
+##Scene Setup:
 - Create two 2D Objects name them “Missile ” and “Target”.
 - Add a Sprite to them. (You can download the project from below link).
 - Add rigidBody 2D in missile and add Script also name it as ”Homing Missile”
 
 
 ## How it actually works?
-####You might think,
+**You might think,**
 It is easy to Implement Homing Missile. Just use MoveToward/Lerp until it reaches the target. Then just write code and look at what is going on in your scene. (try it and then read further to understand)
 
 ![](http://www.theappguruz.com/app/uploads/2018/06/working-of-homing-missile.png)
@@ -45,7 +45,7 @@ You need to understand this Picture. That’s How our Homing Missile Works.
 
 First, what you need is “Direction”.
 
-#STEP: 1
+##STEP: 1
 
 ```csharp
 direction= targetPosition (target.position) - missilePosition(rb.position);
@@ -54,7 +54,7 @@ direction= targetPosition (target.position) - missilePosition(rb.position);
 
 This is how subtraction of two Vector happens (Pythagoras Theorem).
 
-#STEP: 2
+##STEP: 2
 ```csharp
 direction.Normalize();
 ```
@@ -65,7 +65,7 @@ Normalization means converting vector to unit vector.
 Vector A(3,4)
 Normalized(A)=(3/3*3+4*4 , 4/3*3+4*4)=(3/5,4/5)
 ```
-#STEP: 3
+##STEP: 3
 Find Amount of rotation to do that.
 
 ```csharp
@@ -81,14 +81,14 @@ float rotateAmount=Vector3.Cross(direction,transform.up).z;
 
 All three Vectors are perpendicular to each other.that’s why we needed z-axis only.
 
-#STEP: 4
+##STEP: 4
 Now we need to change angularVelocity of our rigidBody.
 ```csharp
 rb.angularVelocity = - angleChangingSpeed * rotationAmount.
 ```
 Minus Sign(-) is used to reverse the direction of movement.
 
-#STEP: 5
+##STEP: 5
 Adding Velocity to our rigidBody.(just changing the Angle is not Enough).
 
 ```csharp
@@ -129,10 +129,10 @@ That is how whole Universe is trapped (Thank God for this error else there is no
 
 Well, There is no particular formula to balance them, but by Increasing angle or decreasing velocity will help you there.
 
-###Caution
+##Caution
 - Do not go with very small speed so your missile loses the feel of Homing Missile and Do not make it Extreme fast it will be trapped in the orbit.
 
-###Caution
+##Caution
 - Do not make **angleChangingSpeed** too small else it will fall in to trap and to high **angleChangingSpeed** loses the feel of your game.
 
 Thats It for Homing Missile from my side..!
